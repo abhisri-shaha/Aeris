@@ -7,6 +7,10 @@ body {
     text-align: center;
 }
 
+.container {
+    min-height: 100vh;
+}
+
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;

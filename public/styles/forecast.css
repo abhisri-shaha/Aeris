@@ -5,7 +5,6 @@ body {
     color: #e0e0ff;
     font-family: "Red Hat Text", sans-serif;
     text-align: center;
-    padding-bottom: 30px; /* Add padding to bottom to avoid button being too close to edge */
 }
 
 @keyframes gradientAnimation {
