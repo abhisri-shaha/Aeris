@@ -63,7 +63,7 @@ h1 {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6,auto) 1fr;
     justify-content: center;
-    background-color: #1a1a1a;
+    background-color: #292929;
     padding: 20px;
     margin: 0px 10px;
     border-radius: 20px;
@@ -127,11 +127,9 @@ h1 {
 
 @media (max-width: 992px) {
     .all-details {
-        display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
     }
     .forecast-details {
-        margin: 5px;
+        margin: 5px 10px;
     }
 }
-
