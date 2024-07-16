@@ -1,0 +1,281 @@
+body {
+    background: linear-gradient(135deg, #8B74BD, #B9BFFF, white, #8398db, #7694f7);
+    background-size: 750% 750%;
+    animation: gradientAnimation 20s ease infinite;
+    color: #e0e0ff;
+    font-family: "Red Hat Text", sans-serif;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #341d5c;
+    font-family: "Eagle Lake", serif;
+    font-weight: 575;
+    font-size: 5rem;
+    text-shadow: 
+        -1px -1px 0 #a3d2f9,  
+         1px -1px 0 #a3d2f9,
+        -1px 1px 0 #a3d2f9,
+         1px 1px 0 #a3d2f9,
+         0 0 5px #8a2be2;
+    margin: 10px;
+}
+
+h2 {
+    color: #22277A;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    font-size: 1.2rem;
+    width: calc(100% - 120px); /* Adjust width considering the button width and margin */
+    max-width: 1200px; /* Optional: limit the maximum width */
+    margin: 0 10px 0 0; /* Right margin for spacing between input and button */
+    border-radius: 5px;
+    border: 1px solid #8a2be2;
+    background-color: #e0e0ff;
+    color: #1a1a1a;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's width and height */
+}
+
+.error {
+    color: red;
+    margin-top: 20px;
+}
+
+.weather-info {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto auto;
+    margin-top: 20px;
+}
+
+.left-panel {
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    grid-template-columns: 1fr;
+    min-width: 300px;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.left-panel .current-heading {
+    font-family: "Righteous", sans-serif;
+    font-size: 2.3rem;
+    align-self: center;
+}
+
+.left-panel .main-info {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+    min-width: 300px;
+    background-color: #020035;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgb(63, 57, 229, 0.7); /* Light bluish shadow */
+}
+
+.left-panel .location {
+    grid-column: span 2;
+    font-size: 1.5rem;
+}
+
+.left-panel .weather-icon {
+    font-size: 6rem;
+}
+
+.left-panel .temperature .main-temp {
+    font-size: 2.5rem;
+    font-family: "Righteous", sans-serif;
+    color: #5d57ff;
+}
+
+.left-panel .temperature .feels-like {
+    font-size: 1.5rem;
+    color: #8aafff;
+}
+
+.left-panel .weather-today {
+    grid-column: span 2;
+    font-size: 2.5rem;
+    font-family: "Itim", cursive;
+}
+
+.left-panel .weather-today span{
+    font-size: 1.5rem;
+}
+
+.right-panel {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.right-panel .additional-info {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr;
+    align-items: center;
+    min-width: 300px;
+    background-color: #1a1a1a;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 1.2rem;
+}
+
+.right-panel .additional-info .additional-heading {
+    font-family: "Righteous", sans-serif;
+    font-size: 1.5rem;
+    padding-top: 15px;
+}
+
+.right-panel .additional-info .additional-content {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto auto;
+    min-width: 300px;
+    background-color: #020035;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 10px 20px 10px;
+    font-size: 1.3rem;
+    font-weight: 0;
+    padding-top: 20px;
+    box-shadow: 0 0 10px rgb(63, 57, 229, 0.5); /* Light bluish shadow */
+    text-align: left;
+    color: #a2bdf8;
+}
+
+.right-panel .additional-info .additional-content span {
+    color: #e0e0ff;
+}
+
+.right-panel .sun-times {
+    display: grid;
+    grid-template-rows: 1fr 2.5fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-width: 300px;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 1.5rem;
+}
+
+.right-panel .sun-times .sun-heading {
+    grid-column: span 2;
+    font-family: "Righteous", sans-serif;
+}
+
+.right-panel .sun-times .sunrise{
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 7.5px;
+    font-size: 1.3rem;
+    font-weight: 450;
+    color: #1a1a1a;
+    background: linear-gradient(to bottom, #64B5F6, #90CAF9, #BBDEFB, #E3F2FD);
+    border: 1px solid rgba(103, 228, 248);
+}
+
+.right-panel .sun-times .sunset {
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 7.5px;
+    font-size: 1.3rem;
+    font-weight: 450;
+    color: #1a1a1a;
+    background: linear-gradient(to bottom, #2196F3, #03A9F4, #00BCD4, #009688);
+    border: 1px solid rgba(0, 199, 230);
+}
+
+.right-panel .sun-times svg {
+    margin-top: 16px;
+}
+.right-panel .buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.left-panel, .additional-info, .sun-times {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Light shadow effect */
+}
+
+button, .button {
+    background-color: #5e00b6;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #601ef9;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+button:hover, .button:hover {
+    background-color: #1f0954; /* Darker hover color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* shadow on hover */
+}
+
+button ion-icon, .button ion-icon {
+    font-size: x-large;
+    margin-left: 7px;
+    justify-content: center;
+}
+
+@media (max-width: 1200px) {
+    .weather-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .left-panel, .right-panel {
+        width: 100%;
+        margin: 10px 0;
+    }
+}

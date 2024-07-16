@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5-Day Forecast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Potta+One&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Righteous&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/forecast.css">
+</head>
+<% function getWeatherIcon(weather) { %>
+    <% if (weather === 'Clouds') { %>
+       <% return 'cloudy-outline'; %> 
+    <% } else if (weather === 'Clear') { %>
+        <% return 'sunny-outline'; %>
+    <% } else if (weather === 'Rain') { %>
+        <% return 'rainy-outline'; %>
+    <% } else if (weather === 'Thunderstorm') { %>
+        <% return 'thunderstorm-outline'; %>
+    <% } else if (weather === 'Drizzle') { %>
+        <% return 'rainy-outline'; %>
+    <% } else if (weather === 'Snow') { %>
+        <% return 'snow-outline'; %>
+    <% } else { %>
+        <% return 'cloudy-outline'; %>
+    <% } %>
+<% } %>
+<body>
+    <h1>5-Day Weather Forecast</h1>
+
+    <% if (locals.error) { %>
+        <p class="error"><%= error %></p>
+    <% } else if (locals.data) { %>
+        <% console.log(data); %>
+        <div class="location">
+            <p><ion-icon name="location-outline"></ion-icon> <%= data.city.name %>, <%= data.city.country %></p>
+        </div>
+        <div class="forecast-container">
+            <% let currentDate = null; %>
+            <% data.list.forEach(item => { %>
+                <% const itemDate = new Date(item.dt * 1000).toDateString(); %>
+                <% if (itemDate !== currentDate) { %>
+                    <% if (currentDate !== null) { %>
+                            </div> <!-- Close all-details div -->
+                        </div><!-- Close forecast-row div -->
+                    <% } %>
+                    <div class="forecast-row">
+                        <div class="forecast-date">
+                            <h2><%= itemDate %></h2>
+                        </div>
+                        <div class="all-details">
+                <% } %>
+                <div class="forecast-details">
+                    <div class="time"><p><%= new Date(item.dt * 1000).toLocaleTimeString() %></p></div>
+                    <div class="weather-icon">
+                        <ion-icon name=<%= getWeatherIcon(item.weather[0].main) %>></ion-icon>
+                    </div>
+                    <div class="main-temp"><p><%= (item.main.temp - 273.15).toFixed(2) %> °C</p></div>
+                    <div class="feels-like"><p>Feels Like: <%= (item.main.feels_like - 273.15).toFixed(2) %> °C</p></div>
+                    <div class= "weather-condition"><p><%= item.weather[0].description.charAt(0).toUpperCase() + item.weather[0].description.slice(1) %></p></div>
+                    <div class="wind"><p>Wind Speed: <%= (item.wind.speed * 3.6).toFixed(2) %> km/h</p></div>
+                    <div class="cloudy"><p>Cloudiness: <%= item.clouds.all %>%</p></div>
+                    <div class="rain">
+                    <% if (item.rain && item.rain['3h']) { %>
+                        <p>Rain (3h): <%= item.rain['3h'] %> mm</p>
+                    <% } %></div>
+                </div>
+                <% currentDate = itemDate; %>
+            <% }); %>
+            </div> <!-- Close last row's all-details div-->
+            </div><!-- Close last row's forecast-row div -->
+        <% } %>
+            <br/>
+        </div>
+    <a href="/weather?lat=<%= locals.data.city.coord.lat %>&lon=<%= locals.data.city.coord.lon %>" class="button"><< Back to Current Weather</a>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

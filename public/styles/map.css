@@ -1,0 +1,93 @@
+body {
+    background: linear-gradient(135deg, #8B74BD, #B9BFFF, white, #8398db, #7694f7);
+    background-size: 750% 750%;
+    animation: gradientAnimation 20s ease infinite;
+    color: #e0e0ff;
+    font-family: "Red Hat Text", sans-serif;
+    text-align: center;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+h1 {
+    color: #341d5c;
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-size: 3.5rem;
+    margin: 30px;
+}
+
+.menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 128px;
+    right: 100px;
+    z-index: 1000;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu h3 {
+    color: #22277A;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+select {
+    padding: 8px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: 1px solid #8a2be2;
+    background-color: #e0e0ff;
+    color: #1a1a1a;
+    box-sizing: border-box;
+}
+
+select:hover {
+    background-color: #f0f0ff;
+}
+
+#map {
+    height: 600px;
+    margin: 20px 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.button {
+    background-color: #5e00b6;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 5px 0;
+    display: inline-block;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #601ef9;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.button:hover {
+    background-color: #1f0954; /* Darker hover color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* shadow on hover */
+}

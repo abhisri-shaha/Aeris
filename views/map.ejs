@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Maps</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Potta+One&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=Righteous&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/map.css">
+</head>
+<body>
+    <h1>Real-time Weather Overview</h1>
+
+    <div id="map"></div>
+    <div class="legend" id="legend"></div>
+    <div class="menu">
+        <h3>Select Weather Layer:</h3>
+        <select id="weatherLayerSelect">
+            <option value="clouds">Clouds</option>
+            <option value="precipitation">Precipitation</option>
+            <option value="temperature">Temperature</option>
+        </select>
+    </div>
+    <div class="buttons">
+        <a href="/" class="button"><< Back to Home Page</a>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var map = L.map('map').setView([0, 0], 2);
+
+            var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            const weatherAPIKey = '<%= locals.weatherAPIKey %>';
+
+            var weatherLayers = {
+                clouds: {
+                    url: `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${weatherAPIKey}`,
+                    name: 'Clouds',
+                    showLegend: false
+                },
+                precipitation: {
+                    url: `https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=${weatherAPIKey}`,
+                    name: 'Precipitation',
+                    showLegend: false
+                },
+                temperature: {
+                    url: `https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${weatherAPIKey}`,
+                    name: 'Temperature',
+                    showLegend: true,
+                    legendImagePath: '/images/temp_legend.png',
+                    legendPosition: 'bottomleft'
+                }
+            };
+
+            var selectedLayer = 'clouds'; // Default selected layer
+
+            // Function to add weather layer
+            function addWeatherLayer(layerName) {
+                // Clear existing weather layer if any
+                if (map.currentWeatherLayer) {
+                    map.removeLayer(map.currentWeatherLayer);
+                }
+
+                if (map.currentLegend) {
+                    map.removeControl(map.currentLegend);
+                }
+
+                // Add new weather layer
+                var weatherLayer = L.tileLayer(weatherLayers[layerName].url, {
+                    opacity: 1,
+                    attribution: `<a href="https://openweathermap.org">OpenWeatherMap</a> | ${weatherLayers[layerName].name}`
+                }).addTo(map);
+
+                // Add legend if showLegend is true and legendImagePath is provided
+                if (weatherLayers[layerName].showLegend && weatherLayers[layerName].legendImagePath) {
+                    var legend = L.control({ position: weatherLayers[layerName].legendPosition });
+
+                    legend.onAdd = function () {
+                        var div = L.DomUtil.create('div', 'legend');
+                        div.innerHTML = `<img src="${weatherLayers[layerName].legendImagePath}" alt="Legend">`;
+                        return div;
+                    };
+                    
+                    map.currentLegend = legend;
+                    legend.addTo(map);
+                }
+
+                // Store reference to current weather layer for removal
+                map.currentWeatherLayer = weatherLayer;
+            }
+
+            // Initial layer load
+            addWeatherLayer(selectedLayer);
+
+            // Event listener for layer selection
+            document.getElementById('weatherLayerSelect').addEventListener('change', function() {
+                selectedLayer = this.value;
+                addWeatherLayer(selectedLayer);
+            });
+        });
+    </script>
+</body>
+</html>

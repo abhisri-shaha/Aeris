@@ -1,0 +1,137 @@
+body {
+    background: linear-gradient(135deg, #8B74BD, #B9BFFF, white, #8398db, #7694f7);
+    background-size: 750% 750%;
+    animation: gradientAnimation 20s ease infinite;
+    color: #e0e0ff;
+    font-family: "Red Hat Text", sans-serif;
+    text-align: center;
+    padding-bottom: 30px; /* Add padding to bottom to avoid button being too close to edge */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    color: #341d5c;
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-size: 3.5rem;
+    margin: 30px;
+}
+
+.location {
+    font-size: 1.5rem;
+    font-family: "Space Grotesk", sans-serif;
+    color:black;
+}
+
+.forecast-container {
+    margin-top: 20px;
+}
+
+.forecast-row {
+    display: grid;
+    grid-template-rows: auto auto; /* Flexible columns */
+    padding: 15px;
+    margin-bottom: 20px;
+    gap: 10px; /* Spacing between items */
+}
+
+.all-details {
+    display: inline-flex;
+    justify-content: center;
+}
+
+.forecast-date {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-family: "Itim", cursive;
+    color: #5e00b6;
+}
+
+.forecast-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6,auto) 1fr;
+    justify-content: center;
+    background-color: #1a1a1a;
+    padding: 20px;
+    margin: 0px 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    color:#e0e0ff;
+}
+
+.forecast-details .time {
+    font-size: 1.5rem;
+}
+
+.forecast-details .weather-icon {
+    font-size: 4rem;
+}
+
+.forecast-details .main-temp {
+    font-size: 2rem;
+    font-family: "Righteous", sans-serif;
+    color: #5d57ff;
+}
+
+.forecast-details .feels-like {
+    font-size: 1.5rem;
+    color: #8aafff;
+}
+
+.forecast-details .weather-condition {
+    font-size: 1.5rem;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.button {
+    background-color: #5e00b6;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 15px 0; /* Adjust vertical margin */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #601ef9;
+    font-family: "Space Grotesk", sans-serif;
+    display: inline-flex;
+}
+
+.button:hover {
+    background-color: #1f0954; /* Darker hover color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* shadow on hover */
+}
+
+@media (max-width: 1200px) {
+    .all-details {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .forecast-details {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 992px) {
+    .all-details {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .forecast-details {
+        margin: 5px;
+    }
+}
+
