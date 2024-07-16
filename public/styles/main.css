@@ -141,6 +141,7 @@ h2 {
     display: grid;
     grid-template-rows: auto auto auto;
     grid-template-columns: 1fr;
+    justify-content: center;
     align-items: center;
 }
 
@@ -148,6 +149,7 @@ h2 {
     display: grid;
     grid-template-rows: 1fr 2fr;
     grid-template-columns: 1fr;
+    justify-content: center;
     align-items: center;
     min-width: 300px;
     background-color: #1a1a1a;
@@ -288,5 +290,14 @@ button ion-icon, .button ion-icon {
     .right-panel .sun-times .sun-heading{
         color: #1a1a1a;
         font-size: 1.5rem;
+    }
+
+    .right-panel .additional-info .additional-content {
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+    }
+
+    .left-panel .main-info {
+        margin: 0px;
     }
 }
