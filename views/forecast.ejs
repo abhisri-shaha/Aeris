@@ -26,20 +26,21 @@
         <% return 'cloudy-outline'; %>
     <% } %>
 <% } %>
+<% month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] %>
 <body>
     <h1>5-Day Weather Forecast</h1>
 
     <% if (locals.error) { %>
         <p class="error"><%= error %></p>
     <% } else if (locals.data) { %>
-        <% console.log(data); %>
+        <% console.log(data.list[0]); %>
         <div class="location">
             <p><ion-icon name="location-outline"></ion-icon> <%= data.city.name %>, <%= data.city.country %></p>
         </div>
         <div class="forecast-container">
             <% let currentDate = null; %>
             <% data.list.forEach(item => { %>
-                <% const itemDate = new Date(item.dt * 1000).toDateString(); %>
+                <% const itemDate = item.dt_txt.slice(8,10) + " " + month[parseInt(item.dt_txt.slice(5,7)) - 1] + " " + item.dt_txt.slice(0,4) %>
                 <% if (itemDate !== currentDate) { %>
                     <% if (currentDate !== null) { %>
                             </div> <!-- Close all-details div -->
@@ -52,7 +53,7 @@
                         <div class="all-details">
                 <% } %>
                 <div class="forecast-details">
-                    <div class="time"><p><%= new Date(item.dt * 1000).toLocaleTimeString() %></p></div>
+                    <div class="time"><p><%= item.dt_txt.slice(11,16) %></p></div>
                     <div class="weather-icon">
                         <ion-icon name=<%= getWeatherIcon(item.weather[0].main) %>></ion-icon>
                     </div>
